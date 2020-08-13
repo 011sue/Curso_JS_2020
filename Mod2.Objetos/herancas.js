@@ -139,5 +139,45 @@ for(let key in filha1){
         // false - senao, por herança
 }
 
+console.log('-----------------------------------------------------')
+
 // EX 4 - HERANÇA
+
+/* 
+Conceito de prototipo: 
+è ter um link que vai te vinculando a outros objetos
+
+Atibuto prototype: todas tem
+__proto__ : conceito de como um obj referencia seu prototipo
+*/
+
+// cria uma function
+function MeuObjeto() {}
+console.log(MeuObjeto.prototype) // tipo: objeto
+
+const obj1 = new MeuObjeto
+const obj2 = new MeuObjeto
+// todos obj criado a partir de uma função construtora apontam pro mesmo prototipo a partir do atributo __proto__
+console.log('obj1 é extritamente igual obj2: ', obj1.__proto__ === obj2.__proto__)
+console.log('MeuObjeto é extritamente igual obj1/obj2: ', MeuObjeto.prototype === obj2.__proto__)
+// quando voce cria um obj a paritr de um função construtora usando new, 
+// o prototipo do obj automaticamente aponta pra função que você criou.prototype
+
+MeuObjeto.prototype.nome = 'Anonimo'
+// atibuir valor 
+// qualquer obj que for criado a partir de uma função construtora
+// terá um atributo nome em obj pai
+MeuObjeto.prototype.falar = function() {
+    console.log(`Bom dia! Meu nome é ${this.nome}`)
+}
+
+obj1.falar()
+
+obj2.nome = 'Rafael' // sobescrever o nome do obj pai
+obj2.falar()
+
+const obj3 = {}
+obj3.__proto__ = MeuObjeto.prototype
+obj3.nome = 'obj3'
+obj3.falar()
 
